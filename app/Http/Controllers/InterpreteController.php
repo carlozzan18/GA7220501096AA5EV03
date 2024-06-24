@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Interprete;
 use Illuminate\Http\Request;
 
 class InterpreteController extends Controller
@@ -11,7 +12,9 @@ class InterpreteController extends Controller
      */
     public function index()
     {
-        //
+        $interpr = Interprete::all();
+
+        return view('interpretes.index',compact('interpr'));
     }
 
     /**
@@ -19,7 +22,7 @@ class InterpreteController extends Controller
      */
     public function create()
     {
-        //
+        return view('interpretes.create');
     }
 
     /**
@@ -27,7 +30,20 @@ class InterpreteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $interp=new Interprete();
+        $interp->nombre_genero=$request->input('nombre_genero');
+        $interp->apellido_interprete =$request->input('apellido_interprete');
+        $interp->pais_interprete  =$request->input('pais_interprete');
+        $interp->seudonimo_interprete=$request->input('seudonimo_interprete');
+
+            if ($request->hasFile('imagen')){ //si desde ese campo viene un archivo hacer:
+                $interp->imagen = $request->file('imagen')->store('public/interpretes');
+
+
+        }
+
+        $interp->save();
+        return'Guardado Exitoso';
     }
 
     /**
@@ -35,7 +51,8 @@ class InterpreteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $interp = Interprete::find($id);
+        return view('interpretes.show',compact('interp'));
     }
 
     /**
@@ -43,7 +60,8 @@ class InterpreteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $interEdit = Interprete::find($id);
+        return view('interpretes.edit',compact('interEdit'));
     }
 
     /**
@@ -51,7 +69,13 @@ class InterpreteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $inter = Interprete::find($id);
+        $inter->fill($request->except('imagen'));
+        if ($request->hasFile('imagen')){ //si desde ese campo viene un archivo hacer:
+            $inter->imagen = $request->file('imagen')->store('public/interpretes');
+            $inter->save();
+            return 'Artista Actualizado';
+        }
     }
 
     /**

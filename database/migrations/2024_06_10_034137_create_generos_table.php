@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nombre_genero', length: 250);
             $table->string('descripcion', length: 250);
+            $table->string('imagen');
         });
     }
 

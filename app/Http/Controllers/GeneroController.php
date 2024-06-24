@@ -35,6 +35,12 @@ class GeneroController extends Controller
         $gener->nombre_genero=$request->input('nombre_genero');
         $gener->descripcion=$request->input('descripcion');
 
+            if ($request->hasFile('imagen')){ //si desde ese campo viene un archivo hacer:
+                $gener->imagen = $request->file('imagen')->store('public/generos');
+
+
+        }
+
         $gener->save();
         return'Guardado Exitoso';
     }
@@ -44,7 +50,8 @@ class GeneroController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $genert = Genero::find($id);
+        return view('generos.show',compact('genert'));
     }
 
     /**
@@ -52,7 +59,8 @@ class GeneroController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $genEdit = Genero::find($id);
+        return view('generos.edit',compact('genEdit'));
     }
 
     /**
@@ -60,7 +68,13 @@ class GeneroController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $gner = Genero::find($id);
+        $gner->fill($request->except('imagen'));
+        if ($request->hasFile('imagen')){ //si desde ese campo viene un archivo hacer:
+            $gner->imagen = $request->file('imagen')->store('public/generos');
+            $gner->save();
+            return 'Genero Actualizado';
+        }
     }
 
     /**

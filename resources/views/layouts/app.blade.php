@@ -37,9 +37,7 @@
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#alblistar">Listado</a></li>
 
-                      <li>
-                        <hr class="dropdown-divider" />
-                      </li>
+
 
                   </li>
                 </ul>
@@ -50,13 +48,12 @@
                     Géneros
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#genlistar">Listado</a></li>
                     <li>
-                      <a class="dropdown-item" href="#gencrear">Crear</a>
-                    </li>
+                        <a class="dropdown-item" href="{{route('genero.files.index')}}">Listado</a></li>
                     <li>
-                      <hr class="dropdown-divider" />
+                      <a class="dropdown-item" href="{{route('genero.files.create')}}">Crear</a>
                     </li>
+
 
                   </ul>
 
@@ -67,20 +64,21 @@
                     Artistas
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#artlistar">Listado</a></li>
+                    <li><a class="dropdown-item" href="{{route('interprete.files.index')}}">Listado</a></li>
 
                     <li>
                       <hr class="dropdown-divider" />
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#artcrear">Crear</a>
+                      <a class="dropdown-item" href="{{route('interprete.files.create')}}">Crear</a>
                     </li>
 
                   </ul>
 
 
+
                 </ul>
-                <span class="navbar-text"> <a href="#acceso">Iniciar sesión</a> </span>
+                <span class="navbar-text"> <a href="#welcome">Iniciar sesión</a> </span>
               </div>
             </div>
           </nav>

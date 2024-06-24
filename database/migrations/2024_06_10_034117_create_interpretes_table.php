@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('apellido_interprete', length: 250);
             $table->string('pais_interprete', length: 250);
             $table->string('seudonimo_interprete', length: 250);
+            $table->string('imagen');
         });
     }
 
